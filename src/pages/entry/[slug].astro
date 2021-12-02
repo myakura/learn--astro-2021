@@ -1,0 +1,29 @@
+---
+import data from "../../json/2021.json";
+
+export async function getStaticPaths() {
+	function sluggify(...items) {
+		return items.join("-").replaceAll(" ", "-");
+	}
+	return data.map(({ date, title, summary }) => {
+		return {
+			params: { slug: sluggify(date, title) },
+			props: { date, title, summary }
+		}
+	})
+}
+// const { slug } = Astro.request.params;
+const { date, title, summary } = Astro.props;
+console.log(Astro.request.params);
+---
+<html>
+<meta name="charset" content="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>{title}</title>
+<body>
+<h1>{title}</h1>
+<p>{date}</p>
+<p>{summary}</p>
+
+</body>
+</html>

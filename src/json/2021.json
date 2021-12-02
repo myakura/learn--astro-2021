@@ -1,0 +1,17 @@
+[
+	{
+		"date": "2021-11-30",
+		"title": "hello astro",
+		"summary": "trying out Astro, the new static site builder."
+	},
+	{
+		"date": "2021-12-01",
+		"title": "adding dynamic routing",
+		"summary": "how `getStaticPaths()` work?"
+	},
+	{
+		"date": "2021-12-02",
+		"title": "dynamic routing with props",
+		"summary": "`getStaticPaths()` accept props... why not use it?"
+	}
+]

@@ -1,4 +1,5 @@
 ---
+import entries from "../json/2021.json";
 const title = "learn--astro";
 ---
 <html>
@@ -10,6 +11,14 @@ const title = "learn--astro";
 <body>
 
 <h1>{title}</h1>
+
+<h2>entries</h2>
+
+<ul>
+{ entries.map(({date, title}) => {
+	<li><a href={`/entry/${[date, title].join("-").replaceAll(" ", "-")}`}>{title}</a> ({date})</li>
+})}
+</ul>
 
 </body>
 </html>

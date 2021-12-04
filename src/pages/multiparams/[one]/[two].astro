@@ -1,0 +1,21 @@
+---
+export async function getStaticPaths() {
+	return [
+		{ params: { one: "one", two: "two" } },
+		{ params: { one: "un", two: "deux" } },
+		{ params: { one: "ein", two: "zwei" } },
+	]
+}
+const { one, two } = Astro.request.params;
+---
+<html>
+<meta name="charset" content="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>multiple params: {one}, {two}</title>
+<body>
+<h1>multiple params: {one}, {two}</h1>
+<p>one: {one}</p>
+<p>two: {two}</p>
+
+</body>
+</html>

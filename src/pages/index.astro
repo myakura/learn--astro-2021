@@ -1,5 +1,6 @@
 ---
 import entries from "../json/2021.json";
+import { slugify } from "../lib/slugify.js";
 const title = "learn--astro";
 ---
 <html>
@@ -16,7 +17,7 @@ const title = "learn--astro";
 
 <ul>
 { entries.map(({date, title}) => {
-	<li><a href={`/entry/${[date, title].join("-").replaceAll(" ", "-")}`}>{title}</a> ({date})</li>
+	<li><a href={`/entry/${slugify(date, title)}`}>{title}</a> ({date})</li>
 })}
 </ul>
 

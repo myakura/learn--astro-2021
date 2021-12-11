@@ -1,13 +1,11 @@
 ---
 import data from "../../json/2021.json";
+import { slugify } from "../../lib/slugify.js";
 
 export async function getStaticPaths() {
-	function sluggify(...items) {
-		return items.join("-").replaceAll(" ", "-");
-	}
 	return data.map(({ date, title, summary }) => {
 		return {
-			params: { slug: sluggify(date, title) },
+			params: { slug: slugify(date, title) },
 			props: { date, title, summary }
 		}
 	})

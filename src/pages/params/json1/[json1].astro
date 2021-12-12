@@ -1,6 +1,6 @@
 ---
-import data from "../../json/2021.json";
-import { slugify } from "../../lib/slugify.js";
+import data from "../../../json/2021.json";
+import { slugify } from "../../../lib/slugify.js";
 
 export async function getStaticPaths() {
 	return data.map(({ date, title, summary }) => {

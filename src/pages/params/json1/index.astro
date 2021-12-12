@@ -1,0 +1,19 @@
+---
+import data from "../../../json/2021.json";
+import { slugify } from "../../../lib/slugify.js";
+---
+<html>
+<meta name="charset" content="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>{Astro.request.url.pathname}</title>
+<body>
+<h1>{Astro.request.url.pathname}</h1>
+
+<ul>
+{ data.map(({ date, title }) => {
+	<li><a href={`./${slugify(date, title)}`}>{title} ({date})</a></li>
+})}
+</ul>
+
+</body>
+</html>

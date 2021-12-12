@@ -5,12 +5,12 @@ import { slugify } from "../../lib/slugify.js";
 export async function getStaticPaths() {
 	return data.map(({ date, title, summary }) => {
 		return {
-			params: { slug: slugify(date, title) },
+			params: { json1: slugify(date, title) },
 			props: { date, title, summary }
 		}
 	})
 }
-// const { slug } = Astro.request.params;
+// const { json1 } = Astro.request.params;
 const { date, title, summary } = Astro.props;
 console.log(Astro.request.params);
 ---

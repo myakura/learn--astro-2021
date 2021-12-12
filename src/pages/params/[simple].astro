@@ -1,20 +1,20 @@
 ---
 export async function getStaticPaths() {
 	return [
-		{ params: { slug: 'test' }},
-		{ params: { slug: 'hello' }},
-		{ params: { slug: 'aloha' }},
+		{ params: { simple: 'test' }},
+		{ params: { simple: 'hello' }},
+		{ params: { simple: 'aloha' }},
 	]
 }
-const { slug } = Astro.request.params;
+const { simple } = Astro.request.params;
 console.log(Astro.request.params);
 ---
 <html>
 <meta name="charset" content="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>named params: {slug}</title>
+<title>named params: {simple}</title>
 <body>
-<h1>named params: {slug}</h1>
+<h1>named params: {simple}</h1>
 <p>Hello.</p>
 </body>
 </html>

@@ -1,0 +1,40 @@
+---
+import { slugify } from "../../../lib/slugify.js";
+
+const dataArray = await Promise.all([
+		import("../../../json/2021-12.json"),
+		import("../../../json/2021-11.json"),
+	]);
+const [{ default: data202112 }, { default: data202111 }] = dataArray;
+
+export async function getStaticPaths() {
+	return [
+		{ params: { json2: "2021" } }
+	]
+}
+
+function grabMonth(date) {
+	return date.slice(0, 7);
+}
+console.log(data202111);
+console.log(data202112);
+---
+<html>
+<meta name="charset" content="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>{Astro.request.url.pathname}</title>
+<body>
+<h1>{Astro.request.url.pathname}</h1>
+<p>check out console to look at data</p>
+
+{dataArray.map(obj => obj.default).map(data => (
+	<h2>{grabMonth(data[0].date)}</h2>
+	<ul>
+		{data.map(item => (
+			<li><a>{item.title}</a></li>
+		))}
+	</ul>
+))}
+
+</body>
+</html>

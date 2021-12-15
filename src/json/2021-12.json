@@ -1,0 +1,17 @@
+[
+	{
+		"date": "2021-12-01",
+		"title": "adding dynamic routing",
+		"summary": "how `getStaticPaths()` work?"
+	},
+	{
+		"date": "2021-12-02",
+		"title": "dynamic routing with props",
+		"summary": "`getStaticPaths()` accept props... why not use it?"
+	},
+	{
+		"date": "2021-12-10",
+		"title": "slugify module",
+		"summary": "define `slugify()` as a module."
+	}
+]

@@ -1,23 +1,32 @@
 ---
 import { slugify } from "../../../lib/slugify.js";
 
-const dataArray = await Promise.all([
-		import("../../../json/2021-12.json"),
-		import("../../../json/2021-11.json"),
-	]);
-const [{ default: data202112 }, { default: data202111 }] = dataArray;
-
 export async function getStaticPaths() {
+	const [{ default: data202112 }, { default: data202111 }] = await Promise.all([
+			import("../../../json/2021-12.json"),
+			import("../../../json/2021-11.json"),
+		]);
+	const dataArray = [data202112, data202111];
 	return [
-		{ params: { json2: "2021" } }
+		{
+			params: { json2: "2021" },
+			props: { dataArray },
+		},
+		{
+			params: { json2: "2021-11" },
+			props: { data: data202111 },
+		},
+		{
+			params: { json2: "2021-12" },
+			props: { data: data202112 },
+		},
 	]
 }
 
 function grabMonth(date) {
 	return date.slice(0, 7);
 }
-console.log(data202111);
-console.log(data202112);
+const { dataArray, data } = Astro.props;
 ---
 <html>
 <meta name="charset" content="utf-8">
@@ -25,16 +34,26 @@ console.log(data202112);
 <title>{Astro.request.url.pathname}</title>
 <body>
 <h1>{Astro.request.url.pathname}</h1>
-<p>check out console to look at data</p>
 
-{dataArray.map(obj => obj.default).map(data => (
+{ !!dataArray && dataArray.map(data => (
 	<h2>{grabMonth(data[0].date)}</h2>
 	<ul>
 		{data.map(item => (
+			// todo link to entry
 			<li><a>{item.title}</a></li>
 		))}
 	</ul>
 ))}
+
+{ !!data &&
+	<h2>{grabMonth(data[0].date)}</h2>
+	<ul>
+		{data.map(item => (
+			// todo link to entry
+			<li><a>{item.title}</a></li>
+		))}
+	</ul>
+}
 
 </body>
 </html>
